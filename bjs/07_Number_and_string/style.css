@@ -1,4 +1,4 @@
-/* Общий стиль для выравнивания и шрифта */
+
 .calc-row {
     height: 100vh;
     display: flex;
@@ -6,61 +6,61 @@
 }
 
 
-/* Стиль для калькулятора */
+
 #calc {
-    width: 320px; /* Ширина калькулятора */
-    background-color: #ffffff; /* Белый фон калькулятора */
-    border-radius: 15px; /* Закругленные углы */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Легкая тень */
-    padding: 10px; /* Внутренние отступы */
+    width: 320px; 
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 10px;
 }
 
-/* Поле ввода */
+
 .input-window {
     text-align: end;
-    font-size: 2rem; /* Увеличенный шрифт */
-    height: 60px; /* Высота поля */
-    margin-bottom: 10px; /* Отступ */
-    border: none; /* Убираем стандартные рамки */
-    border-top-left-radius: 15px; /* Закругленные углы сверху */
+    font-size: 2rem;
+    height: 60px;
+    margin-bottom: 10px;
+    border: none;
+    border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     padding: 10px;
-    background-color: #f8f9fa; /* Лёгкий серый фон для выделения */
-    box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1); /* Внутренняя тень */
+    background-color: #f8f9fa;
+    box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Кнопки */
+
 button {
-    font-size: 1.5rem; /* Крупный шрифт */
-    height: 60px; /* Высота кнопок */
-    margin: 5px; /* Отступ между кнопками */
+    font-size: 1.5rem;
+    height: 60px;
+    margin: 5px;
     border: none;
-    border-radius: 10px; /* Закругленные углы кнопок */
-    transition: all 0.2s ease; /* Анимация при наведении */
+    border-radius: 10px;
+    transition: all 0.2s ease;
     cursor: pointer;
 }
 
-/* Цвета кнопок */
+
 button.btn-outline-primary {
-    background-color: #007bff; /* Синий фон */
-    color: #ffffff; /* Белый текст */
+    background-color: #007bff;
+    color: #ffffff;
 }
 button.btn-outline-primary:hover {
-    background-color: #0056b3; /* Темнее при наведении */
+    background-color: #0056b3;
 }
 
 button.btn-outline-danger {
-    background-color: #dc3545; /* Красный фон */
-    color: #ffffff; /* Белый текст */
+    background-color: #dc3545;
+    color: #ffffff;
 }
 button.btn-outline-danger:hover {
-    background-color: #a71d2a; /* Темнее при наведении */
+    background-color: #a71d2a;
 }
 
-/* Равномерное выравнивание кнопок */
+
 .row.no-gutters {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Центровка кнопок */
-    gap: 5px; /* Равномерные отступы */
+    justify-content: center;
+    gap: 5px;
 }
