@@ -1,0 +1,43 @@
+/* Общие стили для body */
+body {
+    display: flex;
+    justify-content: center; /* Центрируем по горизонтали */
+    align-items: center;     /* Центрируем по вертикали */
+    height: 100vh;           /* Высота на всю страницу */
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Стили для контейнера */
+.container {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px; /* Максимальная ширина контейнера */
+}
+
+/* Стили для заголовка карточки */
+.card-header {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.2em;
+}
+
+/* Стили для тела карточки */
+.card-body {
+    padding: 20px;
+    font-size: 1.1em;
+}
+
+/* Стили для абзацев внутри карточки */
+.card-body p {
+    margin: 10px 0;
+}
+
+/* Для выделения текста */
+.card-body strong {
+    font-weight: bold;
+}
