@@ -28,7 +28,7 @@ const personGenerator = {
             "id_4": "Артем",
             "id_5": "Дмитрий",
             "id_6": "Сергей",
-            "id_7": "Михаил",
+            "id_7": "Федор",
             "id_8": "Даниил",
             "id_9": "Егор",
             "id_10": "Андрей"
@@ -49,66 +49,19 @@ const personGenerator = {
             "id_10": "Анастасия"
         }
     }`,
-    patronymicMaleJson: `{
-        "count": 10,
-        "list": {
-            "id_1": "Александрович",
-            "id_2": "Максимович",
-            "id_3": "Иванович",
-            "id_4": "Артемович",
-            "id_5": "Дмитриевич",
-            "id_6": "Сергеевич",
-            "id_7": "Михайлович",
-            "id_8": "Данилович",
-            "id_9": "Егорович",
-            "id_10": "Андреевич"
-        }
+
+    // Профессии для мужчин и женщин
+    professionJson: `{
+        "male": [
+            "Слесарь", "Шахтёр", "Солдат", "Строитель", "Водитель", "Инженер", 
+            "Программист", "Менеджер", "Юрист", "Доктор"
+        ],
+        "female": [
+            "Медсестра", "Учитель", "Дизайнер", "Журналист", "Психолог", "Бухгалтер", 
+            "Маркетолог", "Художник", "Повар", "Менеджер по продажам"
+        ]
     }`,
-    patronymicFemaleJson: `{
-        "count": 10,
-        "list": {
-            "id_1": "Александровна",
-            "id_2": "Максимовна",
-            "id_3": "Ивановна",
-            "id_4": "Артемовна",
-            "id_5": "Дмитриевна",
-            "id_6": "Сергеевна",
-            "id_7": "Михайловна",
-            "id_8": "Даниловна",
-            "id_9": "Егоровна",
-            "id_10": "Андреевна"
-        }
-    }`,
-    professionMaleJson: `{
-        "count": 10,
-        "list": {
-            "id_1": "Слесарь",
-            "id_2": "Шахтёр",
-            "id_3": "Солдат",
-            "id_4": "Строитель",
-            "id_5": "Водитель",
-            "id_6": "Инженер",
-            "id_7": "Программист",
-            "id_8": "Менеджер",
-            "id_9": "Юрист",
-            "id_10": "Доктор"
-        }
-    }`,
-    professionFemaleJson: `{
-        "count": 10,
-        "list": {
-            "id_1": "Учитель",
-            "id_2": "Доктор",
-            "id_3": "Программист",
-            "id_4": "Менеджер",
-            "id_5": "Дизайнер",
-            "id_6": "Журналист",
-            "id_7": "Психолог",
-            "id_8": "Бухгалтер",
-            "id_9": "Юрист",
-            "id_10": "Маркетолог"
-        }
-    }`,
+
     GENDER_MALE: 'Мужчина',
     GENDER_FEMALE: 'Женщина',
 
@@ -136,9 +89,27 @@ const personGenerator = {
     },
 
     randomPatronymic: function (gender) {
-        return gender === this.GENDER_MALE
-            ? this.randomValue(this.patronymicMaleJson)
-            : this.randomValue(this.patronymicFemaleJson);
+        const maleName = this.randomValue(this.firstNameMaleJson);
+        const lastChar = maleName.slice(-1);
+        const lastTwoChars = maleName.slice(-2);
+        let suffix;
+    
+        if (lastChar === 'й' || lastChar === 'ь') {
+            suffix = gender === this.GENDER_MALE ? 'евич' : 'евна';
+            return maleName.slice(0, -1) + suffix;
+        } else if (lastTwoChars === 'ий') {
+            suffix = gender === this.GENDER_MALE ? 'евич' : 'евна';
+            return maleName.slice(0, -2) + 'ь' + suffix;
+        } else if (lastChar === 'а') {
+            suffix = gender === this.GENDER_MALE ? 'ич' : 'ична';
+            return maleName.slice(0, -1) + suffix;
+        } else if (['ж', 'ч', 'ш', 'щ', 'ц'].includes(lastChar)) {
+            suffix = gender === this.GENDER_MALE ? 'евич' : 'евна';
+            return maleName + suffix;
+        } else {
+            suffix = gender === this.GENDER_MALE ? 'ович' : 'овна';
+            return maleName + suffix;
+        }
     },
 
     randomBirthYear: function () {
@@ -148,10 +119,11 @@ const personGenerator = {
         return this.randomIntNumber(maxYear, minYear);
     },
 
+    // Генерация профессии в зависимости от пола
     randomProfession: function (gender) {
-        return gender === this.GENDER_MALE
-            ? this.randomValue(this.professionMaleJson)
-            : this.randomValue(this.professionFemaleJson);
+        const professions = JSON.parse(this.professionJson);
+        const professionList = gender === this.GENDER_MALE ? professions.male : professions.female;
+        return professionList[this.randomIntNumber(professionList.length - 1, 0)];
     },
 
     getPerson: function () {
@@ -165,3 +137,7 @@ const personGenerator = {
         return this.person;
     }
 };
+
+// Пример использования
+const person = personGenerator.getPerson();
+console.log(person);
